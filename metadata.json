@@ -1,0 +1,17 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Id": "show_values_kde_plasma",
+    "Name": "Show Values",
+    "Description": "Displays CO2/temperature/humidity values from a local HTTP endpoint",
+    "Icon": "preferences-system",
+    "Version": "1.1",
+    "License": "Apache-2.0",
+    "Website": "",
+    "Category": "Utilities"
+  },
+  "X-Plasma-API": "declarativeappletscript",
+  "X-Plasma-MainScript": "contents/ui/main.qml",
+  "X-Plasma-NotificationArea": false,
+  "X-Plasma-API-Minimum-Version": "6.0"
+}
