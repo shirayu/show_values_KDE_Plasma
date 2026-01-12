@@ -14,9 +14,21 @@ PlasmoidItem {
     property bool mode: false
     property string displayText: "No data"
     property string endpointUrl: plasmoid.configuration.endpointUrl
+    property int dataInterval: plasmoid.configuration.dataInterval
     property string errorMessage: "Failed to load data: " + endpointUrl
+    property int blinkNormalInterval: plasmoid.configuration.blinkNormalInterval
+    property int blinkWarningInterval: plasmoid.configuration.blinkWarningInterval
     property int threshold1: plasmoid.configuration.threshold1
     property int threshold2: plasmoid.configuration.threshold2
+    property bool showIcon: plasmoid.configuration.showIcon
+    property string displayFormat: plasmoid.configuration.displayFormat
+
+    onDisplayFormatChanged: updateDisplay()
+    onShowIconChanged: updateDisplay()
+    onThreshold1Changed: updateDisplay()
+    onThreshold2Changed: updateDisplay()
+    onBlinkNormalIntervalChanged: updateDisplay()
+    onBlinkWarningIntervalChanged: updateDisplay()
 
     function updateToolTip() {
         if (dataJson === null) {
@@ -52,18 +64,35 @@ PlasmoidItem {
         var icon = ""
 
         if (ppm >= threshold1) {
-            displayTimer.interval = 300
+            displayTimer.interval = Math.max(100, blinkWarningInterval)
             if (ppm > threshold2) {
                 icon = mode ? "❌" : ""
             } else {
                 icon = mode ? "🟧" : ""
             }
         } else {
-            displayTimer.interval = 1000
+            displayTimer.interval = Math.max(100, blinkNormalInterval)
             icon = mode ? "." : " "
         }
 
-        displayText = icon + ppm + " ppm, " + humidity + "%, " + temperature + "℃"
+        if (!showIcon) {
+            icon = ""
+        }
+
+        displayText = formatDisplay(icon, ppm, humidity, temperature)
+    }
+
+    function formatDisplay(icon, ppm, humidity, temperature) {
+        var fmt = displayFormat
+        if (!fmt) {
+            fmt = "{icon}{ppm} ppm, {humidity}%, {temperature}℃"
+        }
+
+        return fmt
+            .replace("{icon}", icon)
+            .replace("{ppm}", ppm)
+            .replace("{humidity}", humidity)
+            .replace("{temperature}", temperature)
     }
 
     function fetchData() {
@@ -106,7 +135,7 @@ PlasmoidItem {
 
     Timer {
         id: dataTimer
-        interval: 10000
+        interval: Math.max(100, dataInterval)
         repeat: true
         running: true
         onTriggered: fetchData()

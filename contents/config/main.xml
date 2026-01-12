@@ -9,6 +9,18 @@
       <label>HTTP endpoint URL</label>
       <default>http://localhost:5605</default>
     </entry>
+    <entry name="dataInterval" type="Int">
+      <label>Update interval (ms)</label>
+      <default>10000</default>
+    </entry>
+    <entry name="blinkNormalInterval" type="Int">
+      <label>Blink interval normal (ms)</label>
+      <default>1000</default>
+    </entry>
+    <entry name="blinkWarningInterval" type="Int">
+      <label>Blink interval warning (ms)</label>
+      <default>300</default>
+    </entry>
     <entry name="threshold1" type="Int">
       <label>Warning threshold (ppm)</label>
       <default>800</default>
@@ -16,6 +28,14 @@
     <entry name="threshold2" type="Int">
       <label>Alert threshold (ppm)</label>
       <default>900</default>
+    </entry>
+    <entry name="showIcon" type="Bool">
+      <label>Show status icon</label>
+      <default>true</default>
+    </entry>
+    <entry name="displayFormat" type="String">
+      <label>Display format</label>
+      <default>{icon}{ppm} ppm, {humidity}%, {temperature}℃</default>
     </entry>
   </group>
 </kcfg>
