@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name="" />
+  <group name="General">
+    <entry name="endpointUrl" type="String">
+      <label>HTTP endpoint URL</label>
+      <default>http://localhost:5605</default>
+    </entry>
+    <entry name="threshold1" type="Int">
+      <label>Warning threshold (ppm)</label>
+      <default>800</default>
+    </entry>
+    <entry name="threshold2" type="Int">
+      <label>Alert threshold (ppm)</label>
+      <default>900</default>
+    </entry>
+  </group>
+</kcfg>

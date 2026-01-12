@@ -13,9 +13,10 @@ PlasmoidItem {
     property var dataJson: null
     property bool mode: false
     property string displayText: "No data"
-    property string errorMessage: "Failed to load data: http://localhost:5605"
-    property int threshold1: 800
-    property int threshold2: 900
+    property string endpointUrl: plasmoid.configuration.endpointUrl
+    property string errorMessage: "Failed to load data: " + endpointUrl
+    property int threshold1: plasmoid.configuration.threshold1
+    property int threshold2: plasmoid.configuration.threshold2
 
     function updateToolTip() {
         if (dataJson === null) {
@@ -34,7 +35,7 @@ PlasmoidItem {
     function setFailure(message, useErrorPrefix) {
         dataJson = null
         displayText = "No data"
-        errorMessage = useErrorPrefix ? ("Error: " + message) : "Failed to load data: http://localhost:5605"
+        errorMessage = useErrorPrefix ? ("Error: " + message) : ("Failed to load data: " + endpointUrl)
         updateToolTip()
     }
 
@@ -66,7 +67,7 @@ PlasmoidItem {
     }
 
     function fetchData() {
-        var url = "http://localhost:5605"
+        var url = endpointUrl
         var xhr = new XMLHttpRequest()
 
         xhr.onreadystatechange = function() {
