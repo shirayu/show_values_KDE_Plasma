@@ -2,7 +2,8 @@
 
 Plasma 6 widget that fetches CO2 / humidity / temperature from a local HTTP endpoint and displays them.
 
-![Screenshot](screenshot.avif)
+![Screenshot1](screenshot1.avif)
+![Screenshot2](screenshot2.avif)
 
 ## Specs
 
@@ -12,6 +13,12 @@ Plasma 6 widget that fetches CO2 / humidity / temperature from a local HTTP endp
 - Thresholds: `threshold1 = 800`, `threshold2 = 900`
 - Blink: 300ms when `ppm >= threshold1`, otherwise 1000ms
 - Tooltip: last modified timestamp + `stat` JSON
+
+## Endpoint example
+
+```json
+{"stat": {"co2ppm": 801, "humidity": 62.36622017269028, "temperature": 20.7}}
+```
 
 ## Requirements
 
