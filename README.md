@@ -1,6 +1,8 @@
-# Show Values KDE Plasma
+# Show Values on KDE Plasma 6
 
 Plasma 6 widget that fetches CO2 / humidity / temperature from a local HTTP endpoint and displays them.
+
+![Screenshot](screenshot.avif)
 
 ## Specs
 
