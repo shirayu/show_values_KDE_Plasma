@@ -7,7 +7,7 @@
     "Icon": "preferences-system",
     "Version": "1.1",
     "License": "Apache-2.0",
-    "Website": "",
+    "Website": "https://github.com/shirayu/show_values_KDE_Plasma",
     "Category": "Utilities"
   },
   "X-Plasma-API": "declarativeappletscript",
