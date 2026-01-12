@@ -37,5 +37,25 @@
       <label>Display format</label>
       <default>{icon}{ppm} ppm, {humidity}%, {temperature}℃</default>
     </entry>
+    <entry name="fontFamily" type="String">
+      <label>Font family</label>
+      <default></default>
+    </entry>
+    <entry name="fontPointSize" type="Int">
+      <label>Font size (pt)</label>
+      <default>10</default>
+    </entry>
+    <entry name="iconWarning" type="String">
+      <label>Warning icon</label>
+      <default>🟧</default>
+    </entry>
+    <entry name="iconAlert" type="String">
+      <label>Alert icon</label>
+      <default>❌</default>
+    </entry>
+    <entry name="iconNormal" type="String">
+      <label>Normal icon</label>
+      <default>.</default>
+    </entry>
   </group>
 </kcfg>

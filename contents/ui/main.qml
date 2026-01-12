@@ -22,6 +22,11 @@ PlasmoidItem {
     property int threshold2: plasmoid.configuration.threshold2
     property bool showIcon: plasmoid.configuration.showIcon
     property string displayFormat: plasmoid.configuration.displayFormat
+    property string fontFamily: plasmoid.configuration.fontFamily
+    property int fontPointSize: plasmoid.configuration.fontPointSize
+    property string iconWarning: plasmoid.configuration.iconWarning
+    property string iconAlert: plasmoid.configuration.iconAlert
+    property string iconNormal: plasmoid.configuration.iconNormal
 
     onDisplayFormatChanged: updateDisplay()
     onShowIconChanged: updateDisplay()
@@ -29,6 +34,9 @@ PlasmoidItem {
     onThreshold2Changed: updateDisplay()
     onBlinkNormalIntervalChanged: updateDisplay()
     onBlinkWarningIntervalChanged: updateDisplay()
+    onIconWarningChanged: updateDisplay()
+    onIconAlertChanged: updateDisplay()
+    onIconNormalChanged: updateDisplay()
 
     function updateToolTip() {
         if (dataJson === null) {
@@ -62,17 +70,20 @@ PlasmoidItem {
         var humidity = Math.trunc(dataJson.stat.humidity)
         var temperature = Number(dataJson.stat.temperature).toFixed(1)
         var icon = ""
+        var warningIcon = iconWarning && iconWarning.length > 0 ? iconWarning : "🟧"
+        var alertIcon = iconAlert && iconAlert.length > 0 ? iconAlert : "❌"
+        var normalIcon = iconNormal && iconNormal.length > 0 ? iconNormal : "."
 
         if (ppm >= threshold1) {
             displayTimer.interval = Math.max(100, blinkWarningInterval)
             if (ppm > threshold2) {
-                icon = mode ? "❌" : ""
+                icon = mode ? alertIcon : ""
             } else {
-                icon = mode ? "🟧" : ""
+                icon = mode ? warningIcon : ""
             }
         } else {
             displayTimer.interval = Math.max(100, blinkNormalInterval)
-            icon = mode ? "." : " "
+            icon = mode ? normalIcon : " "
         }
 
         if (!showIcon) {
@@ -159,6 +170,8 @@ PlasmoidItem {
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
         text: displayText
+        font.family: fontFamily
+        font.pointSize: Math.max(6, fontPointSize)
     }
 
     Component.onCompleted: {
