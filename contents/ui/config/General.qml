@@ -181,6 +181,13 @@ Kirigami.ScrollablePage {
         }
             }
 
+        PlasmaComponents3.Label {
+            Kirigami.FormData.label: "Format variables"
+            text: "{icon}: status icon\n{ppm}: CO2 (ppm)\n{humidity}: humidity (%)\n{temperature}: temperature (℃)"
+            wrapMode: Text.Wrap
+            Layout.leftMargin: Kirigami.Units.smallSpacing
+        }
+
         PlasmaComponents3.ComboBox {
             id: fontFamilyCombo
             Kirigami.FormData.label: "Font family"
@@ -189,6 +196,17 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             Layout.preferredWidth: Kirigami.Units.gridUnit * 24
             implicitHeight: Kirigami.Units.gridUnit * 2
+            leftPadding: Kirigami.Units.smallSpacing
+            rightPadding: indicator.implicitWidth + (Kirigami.Units.smallSpacing * 2)
+            indicator: Kirigami.Icon {
+                source: "go-down"
+                color: Kirigami.Theme.textColor
+                implicitWidth: Kirigami.Units.iconSizes.small
+                implicitHeight: Kirigami.Units.iconSizes.small
+                anchors.right: parent.right
+                anchors.rightMargin: Kirigami.Units.smallSpacing
+                anchors.verticalCenter: parent.verticalCenter
+            }
             onActivated: {
                 editText = currentText
             }
@@ -208,8 +226,8 @@ Kirigami.ScrollablePage {
                 validator: fontFamilyCombo.validator
                 selectByMouse: true
                 verticalAlignment: Text.AlignVCenter
-                leftPadding: Kirigami.Units.smallSpacing
-                rightPadding: Kirigami.Units.smallSpacing
+                leftPadding: 0
+                rightPadding: 0
             }
             background: Rectangle {
                 color: Kirigami.Theme.backgroundColor
