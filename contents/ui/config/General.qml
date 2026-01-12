@@ -8,6 +8,7 @@ Kirigami.ScrollablePage {
     title: "General"
     Kirigami.Theme.inherit: true
     Kirigami.Theme.colorSet: Kirigami.Theme.Window
+    footer: null
 
     property alias cfg_endpointUrl: endpointUrlField.text
     property alias cfg_dataInterval: dataIntervalSpin.value
@@ -22,6 +23,22 @@ Kirigami.ScrollablePage {
     property alias cfg_iconWarning: iconWarningField.text
     property alias cfg_iconAlert: iconAlertField.text
     property alias cfg_iconNormal: iconNormalField.text
+
+    function resetDefaults() {
+        endpointUrlField.text = "http://localhost:5605"
+        dataIntervalSpin.value = 10000
+        blinkNormalIntervalSpin.value = 1000
+        blinkWarningIntervalSpin.value = 300
+        threshold1Spin.value = 800
+        threshold2Spin.value = 900
+        showIconCheck.checked = true
+        displayFormatField.text = "{icon}{ppm} ppm, {humidity}%, {temperature}℃"
+        fontFamilyCombo.editText = ""
+        fontSizeSpin.value = 10
+        iconWarningField.text = "🟧"
+        iconAlertField.text = "❌"
+        iconNormalField.text = "."
+    }
 
     Kirigami.FormLayout {
         width: page.width
@@ -320,7 +337,41 @@ Kirigami.ScrollablePage {
                 color: Kirigami.Theme.backgroundColor
                 border.color: Kirigami.Theme.disabledTextColor
                 radius: 4
-            }
         }
+            }
+
+        Kirigami.Heading {
+            text: "Reset"
+            level: 3
+            font.bold: true
+            Kirigami.FormData.isSection: true
+            topPadding: Kirigami.Units.smallSpacing
+            bottomPadding: Kirigami.Units.smallSpacing
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        PlasmaComponents3.Button {
+            text: "Restore defaults"
+            icon.name: "edit-undo"
+            Layout.alignment: Qt.AlignRight
+            implicitHeight: Kirigami.Units.gridUnit * 2.4
+            implicitWidth: Kirigami.Units.gridUnit * 12
+            leftPadding: Kirigami.Units.largeSpacing
+            rightPadding: Kirigami.Units.largeSpacing
+            topPadding: Kirigami.Units.smallSpacing
+            bottomPadding: Kirigami.Units.smallSpacing
+            Kirigami.Theme.inherit: false
+            Kirigami.Theme.colorSet: Kirigami.Theme.Button
+            background: Rectangle {
+                color: Kirigami.Theme.backgroundColor
+                border.color: Kirigami.Theme.disabledTextColor
+                radius: 4
+            }
+            onClicked: resetDefaults()
+        }
+
     }
 }
